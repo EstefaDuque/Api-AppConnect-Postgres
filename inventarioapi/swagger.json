@@ -1,0 +1,381 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "inventarioapi",
+    "version" : "1.0.0",
+    "description" : "inventarioapi"
+  },
+  "paths" : {
+    "/producto/{id}" : {
+      "get" : {
+        "operationId" : "getId",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "id",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/actualizar-producto/{id}" : {
+      "put" : {
+        "operationId" : "putId",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "id",
+          "in" : "path",
+          "type" : "string"
+        }, {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/eliminar-producto/{id}" : {
+      "delete" : {
+        "operationId" : "deleteId",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "id",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/productos-sin-abastecimiento" : {
+      "get" : {
+        "operationId" : "getProductos-sin-abastecimiento",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve productos-sin-abastecimiento"
+      }
+    },
+    "/actualizar-proveedor" : {
+      "put" : {
+        "operationId" : "putActualizar-proveedor",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update actualizar-proveedor",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/crear-producto" : {
+      "post" : {
+        "operationId" : "postCrear-producto",
+        "responses" : {
+          "200" : {
+            "description" : "Descripción"
+          },
+          "201" : {
+            "description" : "The operation was successful."
+          },
+          "202" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a crear-producto",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/crear-proveedor" : {
+      "post" : {
+        "operationId" : "postCrear-proveedor",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a crear-proveedor",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/eliminar-proveedor" : {
+      "delete" : {
+        "operationId" : "deleteEliminar-proveedor",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from eliminar-proveedor"
+      }
+    },
+    "/proveedor/{id}" : {
+      "get" : {
+        "operationId" : "getId1",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve id",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "id",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/crear-inventario" : {
+      "post" : {
+        "operationId" : "postCrear-inventario",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a crear-inventario",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/actualizar-inventario" : {
+      "put" : {
+        "operationId" : "putActualizar-inventario",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update actualizar-inventario",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/inventario/{fechavencimiento}" : {
+      "get" : {
+        "operationId" : "getFechavencimiento",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve fechavencimiento",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "fechavencimiento",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/inventario/{fechaingreso}" : {
+      "get" : {
+        "operationId" : "getFechaingreso",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve fechaingreso",
+        "parameters" : [ {
+          "required" : true,
+          "name" : "fechaingreso",
+          "in" : "path",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/eliminar-inventario" : {
+      "delete" : {
+        "operationId" : "deleteEliminar-inventario",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from eliminar-inventario"
+      }
+    },
+    "/crear-marca" : {
+      "post" : {
+        "operationId" : "postCrear-marca",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a crear-marca",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/actualizar-marca" : {
+      "put" : {
+        "operationId" : "putActualizar-marca",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update actualizar-marca",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "type" : "string"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/eliminar-marca" : {
+      "delete" : {
+        "operationId" : "deleteEliminar-marca",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Remove from eliminar-marca"
+      }
+    },
+    "/marcas" : {
+      "get" : {
+        "operationId" : "getMarcas",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve marcas"
+      }
+    },
+    "/prueba" : {
+      "get" : {
+        "operationId" : "getPrueba",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve prueba"
+      }
+    }
+  },
+  "basePath" : "/inventarioapi/v1"
+}
