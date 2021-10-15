@@ -11,7 +11,7 @@ CREATE COMPUTE MODULE postCrear_producto_request
 		DECLARE iva FLOAT InputRoot.JSON.Data.iva;
 		
 		insert into Database.producto (id_marca,nombre,descripcion,stock,precio,iva) values(id_marca,nombre,descripcion,stock,precio,iva);
-		    SET OutputRoot.JSON.Data.mensaje= 'inventario creado correctamente';		
+		    SET OutputRoot.JSON.Data.mensaje= 'Producto creado correctamente';		
 		RETURN TRUE;
 	END;
 
