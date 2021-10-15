@@ -27,33 +27,6 @@
         } ]
       }
     },
-    "/actualizar-producto/{id}" : {
-      "put" : {
-        "operationId" : "putId",
-        "responses" : {
-          "200" : {
-            "description" : "The operation was successful."
-          }
-        },
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "description" : "Update id",
-        "parameters" : [ {
-          "required" : true,
-          "name" : "id",
-          "in" : "path",
-          "type" : "string"
-        }, {
-          "name" : "body",
-          "in" : "body",
-          "schema" : {
-            "type" : "string"
-          },
-          "description" : "The request body for the operation",
-          "required" : true
-        } ]
-      }
-    },
     "/eliminar-producto/{id}" : {
       "delete" : {
         "operationId" : "deleteId",
@@ -114,13 +87,10 @@
         "operationId" : "postCrear-producto",
         "responses" : {
           "200" : {
-            "description" : "Descripción"
-          },
-          "201" : {
-            "description" : "The operation was successful."
-          },
-          "202" : {
-            "description" : "The operation was successful."
+            "description" : "Descripción",
+            "schema" : {
+              "$ref" : "#/definitions/RequestProducto"
+            }
           }
         },
         "consumes" : [ "application/json" ],
@@ -130,7 +100,7 @@
           "name" : "body",
           "in" : "body",
           "schema" : {
-            "type" : "string"
+            "$ref" : "#/definitions/Response"
           },
           "description" : "The request body for the operation",
           "required" : true
@@ -192,34 +162,15 @@
         } ]
       }
     },
-    "/crear-inventario" : {
-      "post" : {
-        "operationId" : "postCrear-inventario",
-        "responses" : {
-          "200" : {
-            "description" : "The operation was successful."
-          }
-        },
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "description" : "Insert a crear-inventario",
-        "parameters" : [ {
-          "name" : "body",
-          "in" : "body",
-          "schema" : {
-            "type" : "string"
-          },
-          "description" : "The request body for the operation",
-          "required" : true
-        } ]
-      }
-    },
     "/actualizar-inventario" : {
       "put" : {
         "operationId" : "putActualizar-inventario",
         "responses" : {
           "200" : {
-            "description" : "The operation was successful."
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
           }
         },
         "consumes" : [ "application/json" ],
@@ -229,7 +180,7 @@
           "name" : "body",
           "in" : "body",
           "schema" : {
-            "type" : "string"
+            "$ref" : "#/definitions/RequestInventario"
           },
           "description" : "The request body for the operation",
           "required" : true
@@ -295,7 +246,10 @@
         "operationId" : "postCrear-marca",
         "responses" : {
           "200" : {
-            "description" : "The operation was successful."
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
           }
         },
         "consumes" : [ "application/json" ],
@@ -305,7 +259,7 @@
           "name" : "body",
           "in" : "body",
           "schema" : {
-            "type" : "string"
+            "$ref" : "#/definitions/RequestMarca"
           },
           "description" : "The request body for the operation",
           "required" : true
@@ -361,21 +315,167 @@
         "description" : "Retrieve marcas"
       }
     },
-    "/prueba" : {
-      "get" : {
-        "operationId" : "getPrueba",
+    "/crear-inventario" : {
+      "post" : {
+        "operationId" : "postCrear-inventario",
         "responses" : {
           "200" : {
             "description" : "The operation was successful.",
             "schema" : {
-              "type" : "string"
+              "$ref" : "#/definitions/Response"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a crear-inventario",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/RequestInventario"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/actualizar-producto" : {
+      "put" : {
+        "operationId" : "putActualizar-producto",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Response"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Update actualizar-producto",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/RequestMarca"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/inventario" : {
+      "get" : {
+        "operationId" : "getInventario",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/ResponseInventario"
             }
           }
         },
         "produces" : [ "application/json" ],
-        "description" : "Retrieve prueba"
+        "description" : "Retrieve inventario",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "type" : "integer"
+        } ]
       }
     }
   },
-  "basePath" : "/inventarioapi/v1"
+  "basePath" : "/inventarioapi/v1",
+  "definitions" : {
+    "RequestMarca" : {
+      "type" : "object",
+      "properties" : {
+        "nombre" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "nombre" ]
+    },
+    "Response" : {
+      "type" : "object",
+      "properties" : {
+        "mensaje" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RequestInventario" : {
+      "type" : "object",
+      "properties" : {
+        "cantidad" : {
+          "type" : "integer"
+        },
+        "fecha_ingreso" : {
+          "type" : "string"
+        },
+        "fecha_caducidad" : {
+          "type" : "string"
+        },
+        "lote" : {
+          "type" : "string"
+        },
+        "id_proveedor" : {
+          "type" : "integer"
+        },
+        "id_producto" : {
+          "type" : "integer"
+        },
+        "element1" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RequestProducto" : {
+      "type" : "object",
+      "properties" : {
+        "id_marca" : {
+          "type" : "integer"
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "descripcion" : {
+          "type" : "string"
+        },
+        "stock" : {
+          "type" : "string"
+        },
+        "precio" : {
+          "type" : "number"
+        },
+        "iva" : {
+          "type" : "number"
+        }
+      }
+    },
+    "ResponseInventario" : {
+      "type" : "object",
+      "properties" : {
+        "id_proveedor" : {
+          "type" : "integer"
+        },
+        "id_producto" : {
+          "type" : "integer"
+        },
+        "cantidad" : {
+          "type" : "integer"
+        },
+        "fecha_ingreso" : {
+          "type" : "string"
+        },
+        "fecha_caducidad" : {
+          "type" : "string"
+        },
+        "lote" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
 }

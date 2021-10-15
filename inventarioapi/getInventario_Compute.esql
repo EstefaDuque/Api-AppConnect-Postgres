@@ -1,0 +1,28 @@
+
+
+CREATE COMPUTE MODULE getInventario_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+	DECLARE lote CHARACTER InputLocalEnvironment.REST.Input.Parameters.id;
+	DECLARE container ROW;
+	
+		IF lote IS NOT NULL THEN
+			
+			SET container.Resultado[] = SELECT I 
+	 		FROM Database.detalle_inventario AS I
+	 		WHERE I.LOTE= lote;
+			
+			SET OutputRoot.JSON.Data.id_proveedor=container.Resultado.id_proveedor ;	
+			SET OutputRoot.JSON.Data.id_producto=container.Resultado.id_producto ;	
+			SET OutputRoot.JSON.Data.cantidad=container.Resultado.cantidad ;	
+			SET OutputRoot.JSON.Data.fecha_ingreso=container.Resultado.fecha_ingreso ;	
+			SET OutputRoot.JSON.Data.fecha_caducidad=container.Resultado.fecha_caducidad ;	
+			SET OutputRoot.JSON.Data.lote=container.Resultado.lote ;	
+		
+		END IF;
+			
+
+		RETURN TRUE;
+	END;
+END MODULE;

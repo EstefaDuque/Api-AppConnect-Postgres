@@ -1,0 +1,19 @@
+
+
+CREATE COMPUTE MODULE postCrear_producto_request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE id_marca INTEGER InputRoot.JSON.Data.id_marca;
+		DECLARE nombre CHARACTER InputRoot.JSON.Data.nombre;
+		DECLARE descripcion CHARACTER InputRoot.JSON.Data.descripcion;
+		DECLARE stock INTEGER InputRoot.JSON.Data.stock;
+		DECLARE precio FLOAT InputRoot.JSON.Data.precio;
+		DECLARE iva FLOAT InputRoot.JSON.Data.iva;
+		
+		insert into Database.producto (id_marca,nombre,descripcion,stock,precio,iva) values(id_marca,nombre,descripcion,stock,precio,iva);
+		    SET OutputRoot.JSON.Data.mensaje= 'inventario creado correctamente';		
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

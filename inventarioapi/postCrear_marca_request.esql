@@ -1,0 +1,21 @@
+
+
+CREATE COMPUTE MODULE postCrear_marca_request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE nombre CHARACTER InputRoot.JSON.Data.nombre;
+		
+		
+		IF nombre IS NULL THEN
+			SET OutputRoot.JSON.Data.mensaje= 'El campo *nombre de la marca es obligatorio';
+		ELSE
+			insert into Database.marca (nombre) values (nombre);
+			SET OutputRoot.JSON.Data.mensaje= 'Marca creada correctamente';
+			
+		END IF;
+		
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

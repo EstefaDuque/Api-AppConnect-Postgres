@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/inventarioapi.msgflow" https="false">
     <ns2:operations>
+        <ns2:operation name="getInventario" implementation="getInventario.subflow"/>
         <ns2:operation name="getMarcas" implementation="getMarcas.subflow"/>
+        <ns2:operation name="postCrear-inventario" implementation="postCrear_inventario.subflow"/>
         <ns2:operation name="postCrear-marca" implementation="postCrear_marca.subflow"/>
+        <ns2:operation name="postCrear-producto" implementation="postCrear_producto.subflow"/>
+        <ns2:operation name="putActualizar-inventario" implementation="putActualizar_inventario.subflow"/>
+        <ns2:operation name="putActualizar-marca" implementation="putActualizar_marca.subflow"/>
+        <ns2:operation name="putActualizar-proveedor" implementation="putActualizar_proveedor.subflow"/>
     </ns2:operations>
     <ns2:errorHandlers/>
 </ns2:restapiDescriptor>

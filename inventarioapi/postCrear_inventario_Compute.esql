@@ -1,0 +1,27 @@
+
+
+CREATE COMPUTE MODULE postCrear_inventario_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+BEGIN
+		DECLARE id_proveedor CHARACTER InputRoot.JSON.Data.nombre;
+		DECLARE id_producto CHARACTER InputRoot.JSON.Data.id_producto;
+		DECLARE cantidad INTEGER InputRoot.JSON.Data.cantidad;
+		DECLARE fecha_ingreso CHARACTER InputRoot.JSON.Data.fecha_ingreso;
+		DECLARE fecha_caducidad CHARACTER InputRoot.JSON.Data.fecha_caducidad;
+		DECLARE lote CHARACTER InputRoot.JSON.Data.lote;
+		
+		
+			
+		IF id_proveedor IS NULL or id_producto IS NULL or cantidad  IS NULL or fecha_ingreso IS NULL or fecha_caducidad IS NULL or lote IS NULL THEN
+			SET OutputRoot.JSON.Data.mensaje= 'Todos los campos son obligatorios 
+			(id_proveedor,id_producto,cantidad,fecha_ingreso,fecha_caducidad,lote)';
+		ELSE
+			insert into Database.detalle_inventario values(id_proveedor,id_producto,cantidad,fecha_ingreso,fecha_caducidad,lote);
+			SET OutputRoot.JSON.Data.mensaje= 'Inventario creado correctamente';
+					
+		END IF;
+			
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE putActualizar_inventario_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	
+	BEGIN
+		
+		DECLARE cantidad INTEGER InputRoot.JSON.Data.cantidad;
+		DECLARE fecha_ingreso CHARACTER InputRoot.JSON.Data.fecha_ingreso;
+		DECLARE fecha_caducidad CHARACTER InputRoot.JSON.Data.fecha_caducidad;
+		DECLARE lote CHARACTER InputRoot.JSON.Data.lote;
+		
+		
+		IF cantidad IS NOT NULL or fecha_ingreso IS NOT NULL or fecha_caducidad IS NOT NULL or lote IS NOT NULL THEN
+	        UPDATE Database.detalle_inventario as di
+		    SET CANTIDAD= cantidad,
+		    	FECHA_INGRESO = fecha_ingreso,
+		    	FECHA_CADUCIDAD= fecha_caducidad		    	
+		    
+		    WHERE di.lote=lote;		
+		 	SET OutputRoot.JSON.Data.mensaje= 'inventario actualizado correctamente';		
+					
+		END IF;
+	  
+					
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;
