@@ -1,0 +1,30 @@
+
+
+CREATE COMPUTE MODULE getId1_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE id INTEGER NULL;
+		DECLARE Contenedor ROW;
+		
+		SET id = InputLocalEnvironment.REST.Input.Parameters.id;
+		
+		SET Contenedor.Resultado[] = select R from Database.proveedor as R where R.id = id;
+		
+		IF Contenedor.Resultado.id IS NULL  THEN
+			SET OutputRoot.JSON.Data.Respuesta = 'El id '||CAST(id AS CHARACTER)||' no se encuentra registrado por favor verificar';
+		ELSE
+			SET OutputRoot.JSON.Data.id = Contenedor.Resultado.id;
+			SET OutputRoot.JSON.Data.id_marca = Contenedor.Resultado.id_marca;
+			SET OutputRoot.JSON.Data.nombre = Contenedor.Resultado.nombre;
+			SET OutputRoot.JSON.Data.descripcion = Contenedor.Resultado.descripcion;
+			SET OutputRoot.JSON.Data.stock = Contenedor.Resultado.stock;
+			SET OutputRoot.JSON.Data.precio = Contenedor.Resultado.precio;
+			SET OutputRoot.JSON.Data.iva = Contenedor.Resultado.iva;
+		END IF;
+		
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

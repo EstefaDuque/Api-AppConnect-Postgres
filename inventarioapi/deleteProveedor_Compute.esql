@@ -1,0 +1,23 @@
+
+
+CREATE COMPUTE MODULE deleteProveedor_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE id INTEGER NULL;
+		DECLARE Contenedor ROW;
+		
+		SET id = InputLocalEnvironment.REST.Input.Parameters.id;
+		
+		SET Contenedor.Resultado[] = select R.id, R.nombre from Database.proveedor as R where R.id = id;
+		
+		IF Contenedor.Resultado.id IS NULL  THEN
+			SET OutputRoot.JSON.Data.Respuesta = 'El id '||CAST(id AS CHARACTER)||' no se encuentra registrado por favor verificar';
+		ELSE
+			delete from Database.proveedor as proveedor where proveedor.id = id;
+			SET OutputRoot.JSON.Data.Respuesta = 'El proveedor con nombre'||' '||Contenedor.Resultado.nombre||' '||'fue eliminado correctamente';
+		END IF;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

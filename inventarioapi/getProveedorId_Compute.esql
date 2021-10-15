@@ -1,0 +1,27 @@
+
+
+CREATE COMPUTE MODULE getProveedorId_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE id INTEGER NULL;
+		DECLARE Contenedor ROW;
+		
+		SET id = InputLocalEnvironment.REST.Input.Parameters.id;
+		
+		SET Contenedor.Resultado[] = select R from Database.proveedor as R where R.id = id;
+		
+		IF Contenedor.Resultado.id IS NULL  THEN
+			SET OutputRoot.JSON.Data.Respuesta = 'El id '||CAST(id AS CHARACTER)||' no se encuentra registrado por favor verificar';
+		ELSE
+			SET OutputRoot.JSON.Data.proveedor.id = Contenedor.Resultado.id;
+			SET OutputRoot.JSON.Data.proveedor.nombre = Contenedor.Resultado.nombre;
+			SET OutputRoot.JSON.Data.proveedor.telefono = Contenedor.Resultado.telefono;
+			SET OutputRoot.JSON.Data.proveedor.direccion = Contenedor.Resultado.direccion;
+			SET OutputRoot.JSON.Data.proveedor.descripcion = Contenedor.Resultado.descripcion;
+			SET OutputRoot.JSON.Data.proveedor.tipo_proveedor = Contenedor.Resultado.tipo_proveedor;
+		END IF;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

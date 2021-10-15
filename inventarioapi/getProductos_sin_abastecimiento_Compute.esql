@@ -1,0 +1,41 @@
+
+
+CREATE COMPUTE MODULE getProductos_sin_abastecimiento_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE Contenedor ROW;
+		
+		SET Contenedor.Resultado[] = select R from Database.producto as R where R.stock = 0;
+		
+		DECLARE dbRef REFERENCE TO Contenedor.Resultado;
+		
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE OutJsonRef REFERENCE TO OutputRoot.JSON.Data;
+		
+		SET OutJsonRef TYPE = JSON.Array;
+		
+		DECLARE Contador INT 1;
+		
+		IF Contenedor.Resultado.[>] IS NULL THEN
+			SET OutJsonRef TYPE = JSON.Object;
+			SET OutJsonRef.Respuesta= 'Aun los producto tienes abastecimiento';
+		ELSE
+			WHILE LASTMOVE(dbRef) DO
+			SET OutJsonRef.Item[Contador].id = dbRef.id;
+			SET OutJsonRef.Item[Contador].id_marca = dbRef.id_marca;
+			SET OutJsonRef.Item[Contador].nombre = dbRef.nombre;
+			SET OutJsonRef.Item[Contador].descripcion = dbRef.descripcion;
+			SET OutJsonRef.Item[Contador].stock = dbRef.stock;
+			SET OutJsonRef.Item[Contador].precio = dbRef.precio;
+			SET OutJsonRef.Item[Contador].iva = dbRef.iva;
+			SET Contador = Contador + 1;
+			move dbRef NEXTSIBLING;
+		END WHILE;
+			
+		END IF;
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

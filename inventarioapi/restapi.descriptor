@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/inventarioapi.msgflow" https="false">
     <ns2:operations>
+        <ns2:operation name="deleteId1" implementation="deleteId1.subflow"/>
+        <ns2:operation name="deleteProd" implementation="deleteProd.subflow"/>
+        <ns2:operation name="deleteProveedor" implementation="deleteProveedor.subflow"/>
         <ns2:operation name="getMarcas" implementation="getMarcas.subflow"/>
+        <ns2:operation name="getProductoId" implementation="getProductoId.subflow"/>
+        <ns2:operation name="getProductos-sin-abastecimiento" implementation="getProductos_sin_abastecimiento.subflow"/>
+        <ns2:operation name="getProveedorId" implementation="getProveedorId.subflow"/>
         <ns2:operation name="postCrear-marca" implementation="postCrear_marca.subflow"/>
     </ns2:operations>
     <ns2:errorHandlers/>

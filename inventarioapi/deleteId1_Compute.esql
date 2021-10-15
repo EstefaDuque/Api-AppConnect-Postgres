@@ -1,0 +1,25 @@
+
+
+CREATE COMPUTE MODULE deleteId1_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE id INTEGER NULL;
+		DECLARE Contenedor ROW;
+		
+		SET id = InputLocalEnvironment.REST.Input.Parameters.id;
+		
+		SET Contenedor.Resultado[] = select R.id, R.nombre from Database.marca as R where R.id = id;
+		
+		IF Contenedor.Resultado.id IS NULL  THEN
+			SET OutputRoot.JSON.Data.Respuesta = 'El id '||CAST(id AS CHARACTER)||' nose encuentra registrado por favor verificar';
+		ELSE
+			delete from Database.marca as marca where marca.id = id;
+			SET OutputRoot.JSON.Data.Respuesta = 'La marca con nombre'||' '||Contenedor.Resultado.nombre||' '||'fue eliminada correctamente';
+		END IF;
+			
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;
